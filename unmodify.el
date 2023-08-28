@@ -25,11 +25,13 @@ If they are the same, mark the buffer as unmodified."
 
 (add-hook 'after-change-functions 'unmodify-check-content-against-original)
 
-(defun unmodify-setup-content-hash-tracking ()
+(defun unmodify-setup-content-tracking ()
   "Set up the tracking of the buffer's original content hash."
   (unmodify-store-original-content-size)
   (unmodify-store-original-content-hash)
   (add-hook 'after-save-hook 'unmodify-store-original-content-size nil t)
   (add-hook 'after-save-hook 'unmodify-store-original-content-hash nil t))
 
-(add-hook 'find-file-hook 'unmodify-setup-content-hash-tracking)
+(add-hook 'find-file-hook 'unmodify-setup-content-tracking)
+
+(provide 'unmodify)
